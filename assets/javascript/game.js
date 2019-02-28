@@ -1,6 +1,6 @@
 let game = {
-    name: "Hitchcock's Rope",
-    description: "Are you an expert on the master of suspense? See if you can guess the names of these mystery Hitchcock films!",
+    name: "Hitchcock's\xa0 Rope",
+    description: 'Are you a "master of suspense" ? See if you can guess the names of these mystery Hitchcock films!',
     wins: 0,
     losses: 0,
     guessesLeft: 3,
@@ -75,7 +75,7 @@ let game = {
 
 }
 
-game.nameText.textContent = game.name;
+game.nameText.textContent = game.name.toUpperCase();
 game.descriptionText.textContent = game.description;
 
 window.onload = function() {
@@ -163,7 +163,7 @@ document.onkeyup = function(event) {
     game.lossesText.textContent = "Losses: " + game.losses;
     game.guessesLeftText.textContent = "Incorrect guesses remaining: " + game.guessesLeft;
     game.answerArrayText.textContent = game.answerArray.join(" ");
-    game.yourGuessesText.textContent = "Your guesses so far: " + game.yourGuesses;
+    game.yourGuessesText.textContent = "Letters you've already guessed: " + game.yourGuesses;
     game.lastAnswerText.textContent = game.lastAnswer.join("");
     
 }

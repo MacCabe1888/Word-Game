@@ -5,29 +5,33 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Word Guess Game</title>
+    <link href="https://fonts.googleapis.com/css?family=Merriweather|IM+Fell+French+Canon+SC" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="assets/css/style.css">
 </head>
 <body>
 
     <h1 id="name-text"></h1>
     
-    <h3 id="description-text"></h3>
-
-    <div>
-        <p id="answer-array-text"></p>
-    </div>
+    <h2 id="description-text"></h2>
     
-    <div>
-        <h4 id="directions-text">Press a key to guess a letter!</h4>
+    <section class="play-area">
+        <h3 id="directions-text">Press a key to guess a letter!</h3>
         <p id="guesses-left-text">Incorrect guesses remaining: 3</p>
         <p id="your-guesses-text">Letters you've already guessed:</p>
         <p id="wins-text">Wins: 0</p>
         <p id="losses-text">Losses: 0</p>
-    </div>
+        <div class="rope">
+            <p id="answer-array-text"></p>
+        </div>
+    </section>
 
-    <div>
-        <h4 id="last-answer-text"></h4>
-        <img id="last-answer-img">
+    <div class="bubble">
+        <div class="media">
+            <img id="last-answer-img">
+            <h4 id="last-answer-text"></h4>
+        </div>
     </div>
+    
 
     <!--link to JavaScript file-->
     <script type="text/javascript" src="assets/javascript/game.js"></script>

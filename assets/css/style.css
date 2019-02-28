@@ -1,0 +1,73 @@
+body{
+    background-color: #040404;
+    color: #ff3333;
+    margin: -60px 0 -60px 0;
+}
+
+h1{
+    font-family: "Merriweather", serif;
+    font-size: 60px;
+    text-align: center;
+    margin-top: 72px;
+    margin-bottom: -11px;
+}
+
+h2{
+    font-family: 'IM Fell French Canon SC', serif;
+    font-size: 36px;
+    text-align: center;
+}
+
+h3, p{
+    font-family: 'IM Fell French Canon SC', serif;
+    font-size: 30px;
+    padding: 3px;
+    margin-left: 18px;
+}
+
+#directions-text{
+    font-size: 36px;
+}
+
+#answer-array-text{
+    font: inherit;
+    font-size: 33px;
+    line-height: 48px;
+    text-align: center;
+    padding: 30px 0 30px 0;
+    margin-top: 120px;
+}
+
+.play-area{
+    background: url(../images/hitchcock-1024x686.jpg);
+    width: 1024px;
+    height: 686px;
+    margin-top: 92px;
+    margin-bottom: -60px;
+}
+
+.rope{
+    width: 640px;
+    margin-left: -4px;
+}
+
+.bubble{
+    background: url(../images/cloud-304979_960_720.png);
+    float: right;
+    width: 960px;
+    height: 720px;
+    margin-top: -720px;
+}
+
+.media{
+    margin-top: 108px;
+    margin-left: 330px;
+}
+
+#last-answer-text{
+    width: 100%;
+    font-size: 36px;
+    text-align: center;
+    margin-top: 9px;
+    margin-left: -200px;
+}
