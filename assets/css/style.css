@@ -13,13 +13,13 @@ h1{
 }
 
 h2{
-    font-family: 'IM Fell French Canon SC', serif;
+    font-family: "IM Fell French Canon SC", serif;
     font-size: 36px;
     text-align: center;
 }
 
 h3, p{
-    font-family: 'IM Fell French Canon SC', serif;
+    font-family: "IM Fell French Canon SC", serif;
     font-size: 30px;
     padding: 3px;
     margin-left: 18px;
@@ -54,19 +54,23 @@ h3, p{
     background: url(../images/cloud-304979_960_720.png);
     width: 960px;
     height: 720px;
-    margin-top: -900px;
+    margin-top: -800px;
     margin-left: 960px;
 }
 
 .media{
-    margin-top: 108px;
+    width: 960px;
+    position: absolute;
+    margin-top: 120px;
     margin-left: 330px;
 }
 
 #last-answer-text{
+    font-family: "IM Fell French Canon SC", serif;
+    font-size: 36px;
     width: 100%;
     font-size: 36px;
     text-align: center;
     margin-top: 9px;
-    margin-left: -200px;
+    margin-left: -368px;
 }
