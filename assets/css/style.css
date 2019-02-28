@@ -42,8 +42,7 @@ h3, p{
     background: url(../images/hitchcock-1024x686.jpg);
     width: 1024px;
     height: 686px;
-    margin-top: 92px;
-    margin-bottom: -60px;
+    margin-top: 103px;
 }
 
 .rope{
@@ -53,10 +52,10 @@ h3, p{
 
 .bubble{
     background: url(../images/cloud-304979_960_720.png);
-    float: right;
     width: 960px;
     height: 720px;
-    margin-top: -720px;
+    margin-top: -900px;
+    margin-left: 960px;
 }
 
 .media{
