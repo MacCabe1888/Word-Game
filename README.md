@@ -1,4 +1,4 @@
-# Word-Guess-Game
+# Word-Game
 A guessing game powered by JavaScript.
 
 This game tests the player's knowledge of Alfred Hitchcock films (or of their titles, at any rate). It resembles Hangman in the following ways:
