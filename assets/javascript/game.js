@@ -27,7 +27,7 @@ let game = {
 
     //this function carries out several of the tasks needed to start a new round (new secret film title, reset array to blanks, etc.)
     play: function() {
-    
+
     //pool of film titles from which the one secret correct answer will be drawn each round (i.e., each time this play function is called)
     movies = ["THE-LODGER:-A-STORY-OF-THE-LONDON-FOG", "THE-39-STEPS", "THE-LADY-VANISHES", "REBECCA", "SABOTEUR", "SHADOW-OF-A-DOUBT", "AVENTURE-MALGACHE",
     "BON-VOYAGE", "LIFEBOAT", "SPELLBOUND", "NOTORIOUS", "ROPE", "STRANGERS-ON-A-TRAIN", "DIAL-M-FOR-MURDER", "REAR-WINDOW", "THE-TROUBLE-WITH-HARRY",
@@ -44,8 +44,8 @@ let game = {
     new Audio("assets/audio/to-catch-a-thief-official-trailer-cary-grant-movie-1955.mp3"), new Audio("assets/audio/music-composed-by-bernard-herrmann-man-who-knew-too-much-main-title-keith-lockhardt.mp3"),
     new Audio("assets/audio/bernard-herrmann-vertigo-theme.mp3"), new Audio("assets/audio/north-by-northwest-theme.mp3"), new Audio("assets/audio/bernard-herrmann-psycho-theme.mp3"),
     new Audio("assets/audio/the-birds-1963-title-sequence.mp3"), new Audio("assets/audio/theme-from-marnie-bernard-herrmann-tippi-hedren-pictures-best-hd-quality.mp3"),
-    new Audio("assets/audio/john-addison-torn-curtain-main-title.mp3"), new Audio("assets/audio/topaz-1969-intro.mp3"), new Audio("assets/audio/john-williams-family-plot-end-credits-end-titles.mp3"),];
-    
+    new Audio("assets/audio/john-addison-torn-curtain-main-title.mp3"), new Audio("assets/audio/topaz-1969-intro.mp3"), new Audio("assets/audio/john-williams-family-plot-end-credits-end-titles.mp3")];
+
     //relative links to movie posters corresponding one-to-one via index matching to the film titles in the movies array
     images = ["assets/images/The Lodger_ A Story of the London Fog.jpg", "assets/images/The 39 Steps.jpg", "assets/images/The Lady Vanishes.jpg", "assets/images/Rebecca.jpg", "assets/images/Saboteur.jpg",
     "assets/images/Shadow of a Doubt.jpg", "assets/images/Aventure Malgache.jpg", "assets/images/Bon Voyage.jpg", "assets/images/Lifeboat.jpg", "assets/images/Spellbound.jpg", "assets/images/Notorious.jpg",
@@ -55,7 +55,7 @@ let game = {
 
     //film (i.e., the correct answer for this round) is selected randomly from the movies array
     film = movies[Math.floor(Math.random() * movies.length)];
-    
+
     //sets up array that will track the player's progress toward getting the correct answer
     for (let i = 0; i < film.length; i++) {
         //letters replaced with blanks
@@ -111,10 +111,10 @@ window.onload = function() {
 
 //key event interprets player pressing a key as a guess and produces the appropriate result
 document.onkeyup = function(event) {
-    
+
     //ensures that uppercase and lowercase key inputs will both be treated as valid guesses
     let playerGuess = event.key.toUpperCase();
-    
+
     //ensures that the input will be treated as a valid guess only if it is a letter and if the player has not already guessed the same letter this round
     if ( (game.alphabet.includes(playerGuess)) && (!game.yourGuesses.includes(playerGuess)) ) {
         //adds letter to the list of guesses
@@ -214,5 +214,5 @@ document.onkeyup = function(event) {
     game.answerArrayText.textContent = game.answerArray.join(" ");
     game.yourGuessesText.textContent = "Letters you've already guessed: " + game.yourGuesses;
     game.lastAnswerText.textContent = game.lastAnswer.join("");
-    
+
 }
