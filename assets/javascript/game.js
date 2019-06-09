@@ -1,5 +1,5 @@
 //declaring the game as an object containing certain conditions and functions
-let game = {
+const game = {
     name: "Hitchcock's\xa0 Rope",
     description: 'Are you a "master of suspense" ? See if you can guess the names of these mystery Hitchcock films!',
     //wins and losses are both 0 at beginning of game
@@ -145,7 +145,7 @@ let game = {
             let letters = 0;
             for (let i = 0; i < str.length; i++) {
                 if (game.alphabet.indexOf(str[i]) > -1) {
-                    letters = letters + 1;
+                    letters++;
                 }
             }
             return letters;
