@@ -1,4 +1,4 @@
-//declaring the game as an object containing certain conditions and functions
+//declaring the "game" as an object containing only the theme-specific data
 const game = {
   name: "Hitchcock's\xa0\xa0Rope",
   description: "Are you a master of suspense\xa0? See if you can guess the names of these mystery Hitchcock films !",
@@ -120,17 +120,16 @@ descriptionText.textContent = game.description;
 displayImg.innerHTML = `<img id="display-img" src="${game.imgSrc}">`;
 
 //this function carries out several of the tasks needed to start a new round (new secretWord, reset array to blanks, etc.)
-function play() {
+const newRound = () => {
   //secretWord (i.e., the correct answer for this round) is selected randomly from the words array
   secretWord = words[Math.floor(Math.random() * words.length)];
 
   //the starting number of guessesLeft equals the default number stored in the game object
   guessesLeft = game.guessesLeft;
 
-  //the player's character guesses, the array which will be displayed as a series of blanks being filled in with the player's correct guesses, and the previous round's correct answer all start out empty
-  yourGuesses = "";
+  //reset answer array and list of guesses
   answerArray = [];
-  lastAnswer = [];
+  yourGuesses = "";
 
   //sets up array that will track the player's progress toward getting the correct answer
   for (let i = 0; i < secretWord.length; i++) {
@@ -152,7 +151,7 @@ function play() {
   answerArrayText.textContent = answerArray.join("\xa0");
 
   //defines a function returning the number of validChars in a string since we are specifically interested in the characters that remain to be guessed, not the number of characters in general
-  function validCharLength(str) {
+  const validCharLength = str => {
     let chars = 0;
     for (let i = 0; i < str.length; i++) {
       if (game.validChars.includes(str[i])) {
@@ -160,11 +159,11 @@ function play() {
       }
     }
     return chars;
-  }
+  };
 
   //the initial number of characters remaining to be guessed is simply the number of validChars in the secretWord string
   remainingChars = validCharLength(secretWord);
-}
+};
 
 //starts up the first round as soon as the browser has loaded the page
 window.onload = () => {
@@ -178,7 +177,7 @@ window.onload = () => {
   //relative links to movie posters corresponding one-to-one via index matching to the strings in the words array
   images = game.images;
   currentAudio = "";
-  play();
+  newRound();
 }
 
 //key event interprets player pressing a key as a guess and produces the appropriate result
@@ -204,75 +203,56 @@ document.onkeyup = event => {
     }
   }
 
-  //if loss conditions are met (all lives lost and all validChars in the secretWord string have not yet been guessed), then the appropriate results occur
-  if (guessesLeft === 0 && remainingChars > 0) {
-    //loss count increases by 1
-    losses++;
-    lossesText.textContent = "L: " + losses;
-    //"lives" replenished for next round
-    guessesLeft = game.guessesLeft;
-    //reset answer array and list of guesses
-    answerArray = [];
-    yourGuesses = "";
-    //pause any music that may be playing in order to prevent simultaneous tracks
+  //if round is over ...
+  if (remainingChars === 0 || guessesLeft === 0) {
+    //pause any audio that may be playing in order to prevent simultaneous tracks
     if (currentAudio) {
       currentAudio.pause();
     }
-    //display correct answer from the round just completed
-    lastAnswer = secretWord.replace(/-/g, " ");
-    //matches secretWord to its appropriate image by identifying the image source as the corresponding element (same index) in the images array
-    for (let i = 0; i < words.length; i++) {  
-      if (secretWord === words[i]) {
-        lastAnswerImg.src = images[i];
-      }
-    }
-    //allows image to be shown by removing the "hide" class which gives the image a "display: none" CSS property
-    lastAnswerImg.classList.remove("hide");
-    lastAnswerText.textContent = lastAnswer;
-    //sets up new round
-    play();
-  }
 
-  //if win condition is met (all validChars in the secretWord string have been guessed), then the appropriate results occur
-  if (remainingChars === 0) {
-    //win count increases by 1
-    wins++;
-    winsText.textContent = "W: " + wins;
-    //"lives" replenished as needed
-    guessesLeft = game.guessesLeft;
-    //reset answer array and list of guesses
-    answerArray = [];
-    yourGuesses = "";
-    //pause any music that may be playing in order to prevent simultaneous tracks
-    if (currentAudio) {
-      currentAudio.pause();
-    }
-    //display correct answer from the round just completed
-    lastAnswer = secretWord.replace(/-/g, " ");
-    //matches secretWord to its appropriate image by identifying the image source as the corresponding element (same index) in the images array
+    //match secretWord to its appropriate image by identifying the image source as the corresponding element (same index) in the images array
     for (let i = 0; i < words.length; i++) {  
       if (secretWord === words[i]) {
         lastAnswerImg.src = images[i];
       }
     }
-    //allows image to be shown by removing the "hide" class which gives the image a "display: none" CSS property
+    //allow image to be shown by removing the "hide" class which gives the image a "display: none" CSS property
     lastAnswerImg.classList.remove("hide");
+
+    //display correct answer from the round just completed
+    lastAnswer = secretWord.replace(/-/g, " ");
     lastAnswerText.textContent = lastAnswer;
-    //matches secretWord to its appropriate audio track by identifying the audio source as the corresponding element (same index) in the themes array
-    for (let i = 0; i < words.length; i++) {  
-      if (secretWord === words[i]) {
-        currentAudio = themes[i];
-      }
-    }
-    //plays the theme music
-    currentAudio.play();
-    //sets up new round
-    play();
+
+    //run appropriate end-of-round function
+    remainingChars === 0 ? win() : loss();
+
+    //start a new round
+    newRound();
   }
 
   //in conjunction with getElementById method, writes updates into HTML to visually reflect the changed game state after each key press
   guessesText.innerHTML =
-    '<p id="guesses-left-text">Guesses remaining: ' + guessesLeft + "</p>"
-    + '<p id="your-guesses-text">Your guesses: ' + yourGuesses + "</p>";
+  '<p id="guesses-left-text">Guesses remaining: ' + guessesLeft + "</p>"
+  + '<p id="your-guesses-text">Your guesses: ' + yourGuesses + "</p>";
   answerArrayText.textContent = answerArray.join("\xa0");
 }
+
+const win = () => {
+  //win count increases by 1
+  wins++;
+  winsText.textContent = "W: " + wins;
+  //matches secretWord to its appropriate audio track by identifying the audio source as the corresponding element (same index) in the themes array
+  for (let i = 0; i < words.length; i++) {  
+    if (secretWord === words[i]) {
+      currentAudio = themes[i];
+    }
+  }
+  //plays the theme music
+  currentAudio.play();
+};
+
+const loss = () => {
+  //loss count increases by 1
+  losses++;
+  lossesText.textContent = "L: " + losses;
+};
