@@ -1,76 +1,103 @@
-body{
+body {
     background-color: #040404;
     color: #ff3333;
-    margin: -60px 0 -60px 0;
 }
 
-h1{
+h1 {
+    margin: 15px 0 10px 0;
     font-family: "Merriweather", serif;
-    font-size: 60px;
-    text-align: center;
-    margin-top: 72px;
-    margin-bottom: -11px;
-}
-
-h2{
-    font-family: "IM Fell French Canon SC", serif;
     font-size: 36px;
     text-align: center;
 }
 
-h3, p{
+h2 {
+    margin: 5px 0;
     font-family: "IM Fell French Canon SC", serif;
-    font-size: 30px;
-    padding: 3px;
-    margin-left: 18px;
-}
-
-#directions-text{
-    font-size: 36px;
-}
-
-#answer-array-text{
-    font: inherit;
-    font-size: 33px;
-    line-height: 48px;
+    font-size: 24px;
     text-align: center;
-    padding: 30px 0 30px 0;
-    margin-top: 120px;
 }
 
-.play-area{
-    background: url(../images/hitchcock-1024x686.jpg);
-    width: 1024px;
-    height: 686px;
-    margin-top: 103px;
+#display {
+    display: flex;
+    border: 2px #303030 groove;
 }
 
-.rope{
-    width: 640px;
-    margin-left: -4px;
+#game {
+    display: flex;
 }
 
-.bubble{
-    background: url(../images/cloud-304979_960_720.png);
-    width: 960px;
-    height: 720px;
-    margin-top: -800px;
-    margin-left: 960px;
+#display-img-container {
+    width: 50%;
 }
 
-.media{
-    width: 960px;
-    position: absolute;
-    margin-top: 120px;
-    margin-left: 330px;
-}
-
-#last-answer-text{
-    font-family: "IM Fell French Canon SC", serif;
-    font-size: 36px;
+#display-img {
     width: 100%;
-    font-size: 36px;
+}
+
+#bubble {
+    display: flex;
+    background: url(../images/cloud-304979_840_560.png);
+    background-repeat: no-repeat;
+    background-size: 100%;
+    width: 50%;
+}
+
+#info {
+    display: flex;
+    width: 50%;
+}
+
+#wins-losses {
+    width: 25%;
+    border: 2px #303030 groove;
     text-align: center;
-    margin-top: 9px;
-    margin-left: -368px;
+}
+
+#guesses, #play-area {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    border: 2px #303030 groove;
+}
+
+#guesses {
+    width: 75%;
+}
+
+#play-area {
+    width: 50%;
+}
+
+#last-answer-img {
+    width: 27.5%;
+    max-height: 62.5%;
+    margin-top: 7.5%;
+    margin-left: 27.5%;
+}
+
+.hide {
+    display: none;
+}
+
+#last-answer-text {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    width: 42.5%;
+    height: 32%;
+    margin-top: 17%;
+    margin-right: 2.5%;
+    font-family: "IM Fell French Canon SC", serif;
+    font-size: 2vw;
+    text-align: center;
+}
+
+p {
+    font-family: "IM Fell French Canon SC", serif;
+    font-size: 24px;
+    margin: 0;
+}
+
+#start, #guesses-left-text, #answer-array-text {
+    text-align: center;
 }
