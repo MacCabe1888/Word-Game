@@ -1,8 +1,51 @@
-//declaring the "game" as an object containing only the theme-specific data
-const game = gamesArr[Math.floor(Math.random() * length)];
+//matches properties that will be represented visually to the corresponding id in the HTML, effectively mapping them onto the page
+gameMenu = document.getElementById("select-game");
+nameText = document.getElementById("name-text");
+descriptionText = document.getElementById("description-text");
+displayImg = document.getElementById("display-img-container");
+winsText = document.getElementById("wins-text");
+lossesText = document.getElementById("losses-text");
+guessesText = document.getElementById("guesses");
+answerArrayText = document.getElementById("answer-array-text");
+lastAnswerText = document.getElementById("last-answer-text");
+lastAnswerImg = document.getElementById("last-answer-img");
 
-//select a random game and start up the first round as soon as the browser has loaded the page
-window.onload = () => {
+//populating the menu with all games from the gamesArr array
+gameMenu.innerHTML = '<option name="" value="">Choose a Game</option>' +
+gamesArr.map((game, i) => {
+  const options = [];
+  options[i] = `<option name="${game.name}" value="${i}">${game.name}</option>`;
+  return options.join("");
+});
+
+//onchange function for the gameMenu HTML element
+const selectGame = () => {
+  const currentGame = game;
+  const i = gameMenu.value;
+  //if the user has selected a game from the menu,
+  //set the game to the corresponding element from gamesArr
+  game = i ? gamesArr[i] : currentGame;
+  //if the game has changed as a result,
+  //run the newGame function to reset display, wins, losses, etc.
+  if (game !== currentGame) {
+    newGame();
+  }
+};
+
+//declaring the game as an object containing only the theme-specific data,
+//randomly drawn from gamesArr by default
+let game = gamesArr[Math.floor(Math.random() * length)];
+
+//start up the game as soon as the browser has loaded the page
+window.onload = () => newGame();
+
+const newGame = () => {
+  //in conjunction with getElementById method, writes name of the game in capital letters to the corresponding HTML location
+  nameText.textContent = game.name.toUpperCase();
+  //in conjunction with getElementById method, writes description of the game to the corresponding HTML location
+  descriptionText.textContent = game.description;
+  //in conjunction with getElementById method, adds thematically appropriate display to the corresponding HTML location
+  displayImg.innerHTML = `<img id="display-img" src="assets/images/${game.imgSrc}">`;
   //wins and losses are both 0 at beginning of first round
   wins = 0;
   losses = 0;
@@ -20,25 +63,7 @@ window.onload = () => {
   });
   currentAudio = "";
   newRound();
-}
-
-//matches properties that will be represented visually to the corresponding id in the HTML, effectively mapping them onto the page
-nameText = document.getElementById("name-text");
-descriptionText = document.getElementById("description-text");
-displayImg = document.getElementById("display-img-container");
-winsText = document.getElementById("wins-text");
-lossesText = document.getElementById("losses-text");
-guessesText = document.getElementById("guesses");
-answerArrayText = document.getElementById("answer-array-text");
-lastAnswerText = document.getElementById("last-answer-text");
-lastAnswerImg = document.getElementById("last-answer-img");
-
-//in conjunction with getElementById method, writes name of the game in capital letters to the corresponding HTML location
-nameText.textContent = game.name.toUpperCase();
-//in conjunction with getElementById method, writes description of the game to the corresponding HTML location
-descriptionText.textContent = game.description;
-//in conjunction with getElementById method, adds thematically appropriate display to the corresponding HTML location
-displayImg.innerHTML = `<img id="display-img" src="assets/images/${game.imgSrc}">`;
+};
 
 //this function carries out several of the tasks needed to start a new round (new secretWord, reset array to blanks, etc.)
 const newRound = () => {
@@ -141,7 +166,7 @@ document.onkeyup = event => {
   '<p id="guesses-left-text">Guesses remaining: ' + guessesLeft + "</p>"
   + '<p id="your-guesses-text">Your guesses: ' + yourGuesses + "</p>";
   answerArrayText.textContent = answerArray.join("\xa0");
-}
+};
 
 const win = () => {
   //win count increases by 1
