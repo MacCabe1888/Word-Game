@@ -3,6 +3,11 @@ body {
     color: #ff3333;
 }
 
+select {
+    position: absolute;
+    right: 0;
+}
+
 h1 {
     margin: 15px 0 10px 0;
     font-family: "Merriweather", serif;
