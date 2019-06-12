@@ -1,105 +1,26 @@
 //declaring the "game" as an object containing only the theme-specific data
-const game = {
-  name: "Hitchcock's\xa0\xa0Rope",
-  description: "Are you a master of suspense\xa0? See if you can guess the names of these mystery Hitchcock films !",
-  imgSrc: "assets/images/hitchcock-1024x686.jpg",
-  //player starts with 3 "lives"
-  guessesLeft: 3,
-  //including a validChars array will help us distinguish between
-  //guessable characters (which need to be guessed to win the round and which constitute valid key inputs)
-  //and non-guessable characters (which do not)
-  validChars: [
-    "A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M",
-    "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z"
-  ],
+const game = gamesArr[Math.floor(Math.random() * length)];
 
-  words: [
-    "THE-LODGER:-A-STORY-OF-THE-LONDON-FOG",
-    "THE-39-STEPS",
-    "THE-LADY-VANISHES",
-    "REBECCA",
-    "SABOTEUR",
-    "SHADOW-OF-A-DOUBT",
-    "AVENTURE-MALGACHE",
-    "BON-VOYAGE",
-    "LIFEBOAT",
-    "SPELLBOUND",
-    "NOTORIOUS",
-    "ROPE",
-    "STRANGERS-ON-A-TRAIN",
-    "DIAL-M-FOR-MURDER",
-    "REAR-WINDOW",
-    "THE-TROUBLE-WITH-HARRY",
-    "TO-CATCH-A-THIEF",
-    "THE-MAN-WHO-KNEW-TOO-MUCH",
-    "VERTIGO",
-    "NORTH-BY-NORTHWEST",
-    "PSYCHO",
-    "THE-BIRDS",
-    "MARNIE",
-    "TORN-CURTAIN",
-    "TOPAZ",
-    "FAMILY-PLOT"
-  ],
-
-  themes: [
-    new Audio("assets/audio/restored-version-of-hitchcock-classic-the-lodger-with-nitin-sawhney-score.mp3"),
-    new Audio("assets/audio/the-39-steps-hitchcock-1935-opening-title-sequence.mp3"),
-    new Audio("assets/audio/the-lady-vanishes-1938.mp3"),
-    new Audio("assets/audio/franz-waxman-theme-from-rebecca-1940.mp3"),
-    new Audio("assets/audio/saboteur-1942-opening-title-sequence.mp3"),
-    new Audio("assets/audio/shadow-of-a-doubt-1943-instrumental.mp3"),
-    new Audio("assets/audio/benjamin-frankel-music-from-alfred-hitchcocks-aventure-malgache-1944.mp3"),
-    new Audio("assets/audio/benjamin-frankel-music-from-alfred-hitchcocks-bon-voyage-1944.mp3"),
-    new Audio("assets/audio/alfred-hitchcock-lifeboat-extras.mp3"), 
-    new Audio("assets/audio/miklos-rozsa-spellbound-main-theme.mp3"),
-    new Audio("assets/audio/notorious-1946-theatrical-trailer.mp3"),
-    new Audio("assets/audio/rope-1948-opening-title-sequence.mp3"),
-    new Audio("assets/audio/strangers-on-a-train-1951-opening-title-sequence.mp3"),
-    new Audio("assets/audio/dial-m-for-murder-theme.mp3"),
-    new Audio("assets/audio/rear-window-1954-opening-title-sequence.mp3"),
-    new Audio("assets/audio/bernard-herrmann-the-trouble-with-harry-suite-from-the-film-music-1955.mp3"),
-    new Audio("assets/audio/to-catch-a-thief-official-trailer-cary-grant-movie-1955.mp3"),
-    new Audio("assets/audio/music-composed-by-bernard-herrmann-man-who-knew-too-much-main-title-keith-lockhardt.mp3"),
-    new Audio("assets/audio/bernard-herrmann-vertigo-theme.mp3"),
-    new Audio("assets/audio/north-by-northwest-theme.mp3"),
-    new Audio("assets/audio/bernard-herrmann-psycho-theme.mp3"),
-    new Audio("assets/audio/the-birds-1963-title-sequence.mp3"),
-    new Audio("assets/audio/theme-from-marnie-bernard-herrmann-tippi-hedren-pictures-best-hd-quality.mp3"),
-    new Audio("assets/audio/john-addison-torn-curtain-main-title.mp3"),
-    new Audio("assets/audio/topaz-1969-intro.mp3"),
-    new Audio("assets/audio/john-williams-family-plot-end-credits-end-titles.mp3")
-  ],
-
-  images: [
-    "assets/images/The Lodger_ A Story of the London Fog.jpg",
-    "assets/images/The 39 Steps.jpg",
-    "assets/images/The Lady Vanishes.jpg",
-    "assets/images/Rebecca.jpg",
-    "assets/images/Saboteur.jpg",
-    "assets/images/Shadow of a Doubt.jpg",
-    "assets/images/Aventure Malgache.jpg",
-    "assets/images/Bon Voyage.jpg",
-    "assets/images/Lifeboat.jpg",
-    "assets/images/Spellbound.jpg",
-    "assets/images/Notorious.jpg",
-    "assets/images/Rope.jpg",
-    "assets/images/Strangers on a Train.jpg",
-    "assets/images/Dial M for Murder.jpg",
-    "assets/images/Rear Window.png",
-    "assets/images/The Trouble with Harry.jpg",
-    "assets/images/To Catch a Thief.jpg",
-    "assets/images/The Man Who Knew Too Much.jpg",
-    "assets/images/Vertigo.jpg",
-    "assets/images/North by Northwest.jpg",
-    "assets/images/Psycho.jpg",
-    "assets/images/The Birds.jpg",
-    "assets/images/Marnie.jpg",
-    "assets/images/Torn Curtain.jpg",
-    "assets/images/Topaz.jpg",
-    "assets/images/Family Plot.jpg"
-  ]
-};
+//select a random game and start up the first round as soon as the browser has loaded the page
+window.onload = () => {
+  //wins and losses are both 0 at beginning of first round
+  wins = 0;
+  losses = 0;
+  //pool of words from which the one secret correct answer will be drawn each round (i.e., each time this play function is called)
+  words = game.words;
+  //relative links to theme music corresponding one-to-one via index matching to the strings in the words array
+  themes = [];
+  game.themes.map((path, i) => {
+    return themes[i] = new Audio(`assets/audio/${path}`);
+  });
+  //relative links to movie posters corresponding one-to-one via index matching to the strings in the words array
+  images = [];
+  game.images.map((path, i) => {
+    return images[i] = `assets/images/${path}`;
+  });
+  currentAudio = "";
+  newRound();
+}
 
 //matches properties that will be represented visually to the corresponding id in the HTML, effectively mapping them onto the page
 nameText = document.getElementById("name-text");
@@ -117,7 +38,7 @@ nameText.textContent = game.name.toUpperCase();
 //in conjunction with getElementById method, writes description of the game to the corresponding HTML location
 descriptionText.textContent = game.description;
 //in conjunction with getElementById method, adds thematically appropriate display to the corresponding HTML location
-displayImg.innerHTML = `<img id="display-img" src="${game.imgSrc}">`;
+displayImg.innerHTML = `<img id="display-img" src="assets/images/${game.imgSrc}">`;
 
 //this function carries out several of the tasks needed to start a new round (new secretWord, reset array to blanks, etc.)
 const newRound = () => {
@@ -164,21 +85,6 @@ const newRound = () => {
   //the initial number of characters remaining to be guessed is simply the number of validChars in the secretWord string
   remainingChars = validCharLength(secretWord);
 };
-
-//starts up the first round as soon as the browser has loaded the page
-window.onload = () => {
-  //wins and losses are both 0 at beginning of first round
-  wins = 0;
-  losses = 0;
-  //pool of words from which the one secret correct answer will be drawn each round (i.e., each time this play function is called)
-  words = game.words;
-  //relative links to theme music corresponding one-to-one via index matching to the strings in the words array
-  themes = game.themes;
-  //relative links to movie posters corresponding one-to-one via index matching to the strings in the words array
-  images = game.images;
-  currentAudio = "";
-  newRound();
-}
 
 //key event interprets player pressing a key as a guess and produces the appropriate result
 document.onkeyup = event => {
