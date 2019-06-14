@@ -1,7 +1,8 @@
 const gamesArr = [
   {
-    name: "Hitchcock's\xa0\xa0Rope",
-    description: "Are you a master of suspense\xa0? See if you can guess the names of these mystery Hitchcock films\xa0!",
+    name: "Hitchcock's Rope",
+    description: "Are you a master of suspense? See if you can guess the names of these mystery Hitchcock films!",
+    assetsDir: "0",
     imgSrc: "hitchcock-1024x686.jpg",
     guessesLeft: 3,
     validChars: [
@@ -91,6 +92,79 @@ const gamesArr = [
       "Torn Curtain.jpg",
       "Topaz.jpg",
       "Family Plot.jpg"
+    ]
+  },
+  {
+    name: "Hangman",
+    description: "Will you escape the hangman's noose? Put your knowledge of the wild west to the test by guessing the names of these classic Westerns!",
+    assetsDir: "1",
+    imgSrc: "GettyImages-74698944.jpg",
+    guessesLeft: 5,
+    validChars: [
+      "A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M",
+      "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z"
+    ],
+    words: [
+      "STAGECOACH",
+      "DESTRY-RIDES-AGAIN",
+      "MY-DARLING-CLEMENTINE",
+      "THE-TREASURE-OF-THE-SIERRA-MADRE",
+      "SHE-WORE-A-YELLOW-RIBBON",
+      "THE-GUNFIGHTER",
+      "BEND-OF-THE-RIVER",
+      "HIGH-NOON",
+      "THE-NAKED-SPUR",
+      "SHANE",
+      "JOHNNY-GUITAR",
+      "THE-INDIAN-FIGHTER",
+      "THE-SEARCHERS",
+      "MAN-OF-THE-WEST",
+      "THE-HANGING-TREE",
+      "RIDE-LONESOME",
+      "RIO-BRAVO",
+      "THE-MAGNIFICENT-SEVEN",
+      "THE-COMANCHEROS",
+      "THE-MAN-WHO-SHOT-LIBERTY-VALANCE",
+      "HOW-THE-WEST-WAS-WON",
+      "A-FISTFUL-OF-DOLLARS",
+      "THE-SONS-OF-KATIE-ELDER",
+      "FOR-A-FEW-DOLLARS-MORE",
+      "THE-PROFESSIONALS",
+      "EL-DORADO",
+      "THE-GOOD,-THE-BAD-AND-THE-UGLY",
+      "THE-BIG-GUNDOWN",
+      "DAY-OF-ANGER",
+      "WILL-PENNY",
+      "THE-RUTHLESS-FOUR",
+      "THE-GREAT-SILENCE",
+      "ONCE-UPON-A-TIME-IN-THE-WEST",
+      "THE-WILD-BUNCH",
+      "BUTCH-CASSIDY-AND-THE-SUNDANCE-KID",
+      "LITTLE-BIG-MAN",
+      "VALDEZ-IS-COMING",
+      "BIG-JAKE",
+      "MCCABE-&-MRS.-MILLER",
+      "JEREMIAH-JOHNSON",
+      "HIGH-PLAINS-DRIFTER",
+      "PAT-GARRETT-&-BILLY-THE-KID",
+      "MY-NAME-IS-NOBODY",
+      "THE-MISSOURI-BREAKS",
+      "THE-OUTLAW-JOSEY-WALES",
+      "PALE-RIDER",
+      "SILVERADO",
+      "UNFORGIVEN",
+      "TOMBSTONE",
+      "THE-QUICK-AND-THE-DEAD",
+      "THE-MISSING",
+      "3:10-TO-YUMA",
+      "BONE-TOMAHAWK",
+      "THE HATEFUL EIGHT"
+    ],
+    themes: [
+      
+    ],
+    images: [
+      
     ]
   }
 ];
