@@ -107,3 +107,15 @@ p {
 #start, #guesses-left-text, #answer-array-text {
     text-align: center;
 }
+
+#keyboard {
+    margin-top: 24px;
+    margin-left: 50%;
+    text-align: center;
+}
+
+#keyboard > button {
+    font-family: "Merriweather", serif;
+    font-size: 16px;
+    margin: 2px;
+}
