@@ -7,8 +7,8 @@ winsText = document.getElementById("wins-text");
 lossesText = document.getElementById("losses-text");
 guessesText = document.getElementById("guesses");
 answerArrayText = document.getElementById("answer-array-text");
-lastAnswerText = document.getElementById("last-answer-text");
 lastAnswerImg = document.getElementById("last-answer-img");
+lastAnswerText = document.getElementById("last-answer-text");
 
 //populating the menu with all games from the gamesArr array
 gameMenu.innerHTML = '<option name="" value="">Choose a Game</option>' +
@@ -32,36 +32,56 @@ const selectGame = () => {
   }
 };
 
+//declaring currentAudio as a global variable so it can be paused from within any function
+let currentAudio = "";
+
 //declaring the game as an object containing only the theme-specific data,
 //randomly drawn from gamesArr by default
-let game = gamesArr[Math.floor(Math.random() * length)];
+let game = gamesArr[Math.floor(Math.random() * gamesArr.length)];
 
 //start up the game as soon as the browser has loaded the page
 window.onload = () => newGame();
 
 const newGame = () => {
   //in conjunction with getElementById method, writes name of the game in capital letters to the corresponding HTML location
-  nameText.textContent = game.name.toUpperCase();
+  nameText.textContent = game.name.replace(/\s+/g, "\xa0\xa0").toUpperCase();
   //in conjunction with getElementById method, writes description of the game to the corresponding HTML location
-  descriptionText.textContent = game.description;
+  descriptionText.textContent = game.description
+    .replace(/[?]/g, "\xa0?\xa0")
+    .replace(/[!]/g, "\xa0!\xa0")
+    .replace(/[.]/g, "\xa0.\xa0");
   //in conjunction with getElementById method, adds thematically appropriate display to the corresponding HTML location
   displayImg.innerHTML = `<img id="display-img" src="assets/images/${game.imgSrc}">`;
   //wins and losses are both 0 at beginning of first round
   wins = 0;
+  winsText.textContent = "W: " + wins;
   losses = 0;
+  lossesText.textContent = "L: " + losses;
+  //reset guessesText HTML to display instructions
+  guessesText.innerHTML = '<p id="start">Press a key to guess a letter&nbsp;!</p>';
   //pool of words from which the one secret correct answer will be drawn each round (i.e., each time this play function is called)
   words = game.words;
+  //name of directory containing game-specific assets
+  const dir = game.assetsDir;
   //relative links to theme music corresponding one-to-one via index matching to the strings in the words array
   themes = [];
   game.themes.map((path, i) => {
-    return themes[i] = new Audio(`assets/audio/${path}`);
+    return themes[i] = new Audio(`assets/audio/${dir}/${path}`);
   });
   //relative links to movie posters corresponding one-to-one via index matching to the strings in the words array
   images = [];
   game.images.map((path, i) => {
-    return images[i] = `assets/images/${path}`;
+    return images[i] = `assets/images/${dir}/${path}`;
   });
+  //pause any audio that may be playing in order to prevent simultaneous tracks
+  if (currentAudio) {
+    currentAudio.pause();
+  }
   currentAudio = "";
+  //clear bubble content from last round of previous game
+  lastAnswerImg.classList.add("hide");
+  lastAnswerText.textContent = "";
+  //start first round
   newRound();
 };
 
