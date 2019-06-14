@@ -57,7 +57,7 @@ const newGame = () => {
   losses = 0;
   lossesText.textContent = "L: " + losses;
   //reset guessesText HTML to display instructions
-  guessesText.innerHTML = '<p id="start">Press a key to guess a letter&nbsp;!</p>';
+  guessesText.innerHTML = '<p id="start">Press a key (or one of the buttons below) to guess a letter&nbsp;!</p>';
   //pool of words from which the one secret correct answer will be drawn each round (i.e., each time this play function is called)
   words = game.words;
   //name of directory containing game-specific assets
