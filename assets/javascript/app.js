@@ -1,22 +1,21 @@
 //matches properties that will be represented visually to the corresponding id in the HTML, effectively mapping them onto the page
-gameMenu = document.getElementById("select-game");
-nameText = document.getElementById("name-text");
-descriptionText = document.getElementById("description-text");
-displayImg = document.getElementById("display-img-container");
-winsText = document.getElementById("wins-text");
-lossesText = document.getElementById("losses-text");
-guessesText = document.getElementById("guesses");
-answerArrayText = document.getElementById("answer-array-text");
-lastAnswerImg = document.getElementById("last-answer-img");
-lastAnswerText = document.getElementById("last-answer-text");
+const gameMenu = document.getElementById("select-game");
+const nameText = document.getElementById("name-text");
+const descriptionText = document.getElementById("description-text");
+const displayImg = document.getElementById("display-img-container");
+const winsText = document.getElementById("wins-text");
+const lossesText = document.getElementById("losses-text");
+const guessesText = document.getElementById("guesses");
+const answerArrayText = document.getElementById("answer-array-text");
+const lastAnswerImg = document.getElementById("last-answer-img");
+const lastAnswerText = document.getElementById("last-answer-text");
+const keyboard = document.getElementById("keyboard");
 
 //populating the menu with all games from the gamesArr array
 gameMenu.innerHTML = '<option name="" value="">Choose a Game</option>' +
 gamesArr.map((game, i) => {
-  const options = [];
-  options[i] = `<option name="${game.name}" value="${i}">${game.name}</option>`;
-  return options.join("");
-});
+  return `<option name="${game.name}" value="${i}">${game.name}</option>`;
+}).join("");
 
 //onchange function for the gameMenu HTML element
 const selectGame = () => {
@@ -81,6 +80,14 @@ const newGame = () => {
   //clear bubble content from last round of previous game
   lastAnswerImg.classList.add("hide");
   lastAnswerText.textContent = "";
+  //build virtual keyboard of validChars, each with a click event that triggers the corresponding keyup event,
+  //allowing the user to mimic a key press with a button click
+  //(optional if the user has a keyboard, but necessary on mobile devices)
+  keyboard.innerHTML = game.validChars.map(char => {
+    return `<button name="${char}" onclick="document.onkeyup({ key: '${char}' })">`
+    + char
+    + "</button>";
+  }).join("");
   //start first round
   newRound();
 };
@@ -118,13 +125,13 @@ const newRound = () => {
 
   //defines a function returning the number of validChars in a string since we are specifically interested in the characters that remain to be guessed, not the number of characters in general
   const validCharLength = str => {
-    let chars = 0;
+    let numChars = 0;
     for (let i = 0; i < str.length; i++) {
       if (game.validChars.includes(str[i])) {
-        chars++;
+        numChars++;
       }
     }
-    return chars;
+    return numChars;
   };
 
   //the initial number of characters remaining to be guessed is simply the number of validChars in the secretWord string
@@ -134,7 +141,7 @@ const newRound = () => {
 //key event interprets player pressing a key as a guess and produces the appropriate result
 document.onkeyup = event => {
   //ensures that uppercase and lowercase key inputs will both be treated as valid guesses
-  let playerGuess = event.key.toUpperCase();
+  const playerGuess = event.key.toUpperCase();
 
   //ensures that the input will be treated as a valid guess only if it is a validChar and only if the player has not already guessed the same character this round
   if (game.validChars.includes(playerGuess) && !yourGuesses.includes(playerGuess)) {
