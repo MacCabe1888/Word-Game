@@ -104,8 +104,24 @@ p {
     margin: 0;
 }
 
+#wins-text {
+    border-bottom: 2px #303030 groove;
+}
+
+#losses-text {
+    border-top: 2px #303030 groove;
+}
+
 #start, #guesses-left-text, #answer-array-text {
     text-align: center;
+}
+
+#guesses-left-text {
+    border-bottom: 2px #303030 groove;
+}
+
+#your-guesses-text {
+    border-top: 2px #303030 groove;
 }
 
 #keyboard {
