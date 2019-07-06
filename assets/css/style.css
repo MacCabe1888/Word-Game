@@ -135,3 +135,15 @@ p {
     font-size: 16px;
     margin: 2px;
 }
+
+.Hangman {
+    color: burlywood;
+}
+
+h1.Hangman {
+    font-family: "Arbutus", cursive;
+}
+
+h2.Hangman {
+    font-family: "Arvo", serif;
+}
