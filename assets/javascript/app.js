@@ -42,6 +42,11 @@ let game = gamesArr[Math.floor(Math.random() * gamesArr.length)];
 window.onload = () => newGame();
 
 const newGame = () => {
+  //adds game-specific class to HTML elements for styling specificity
+  const className = game.name.replace(/\s+/g, "-");
+  nameText.classList = descriptionText.classList = winsText.classList = lossesText.classList
+  = guessesText.classList = answerArrayText.classList = lastAnswerText.classList = className;
+  
   //in conjunction with getElementById method, writes name of the game in capital letters to the corresponding HTML location
   nameText.textContent = game.name.replace(/\s+/g, "\xa0\xa0").toUpperCase();
   //in conjunction with getElementById method, writes description of the game to the corresponding HTML location
