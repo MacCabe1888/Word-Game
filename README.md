@@ -1,5 +1,5 @@
 # Word-Game
-A guessing game powered by JavaScript.
+A hangman-style guessing game with modular, user-selected themes including word banks, posters, and music.
 
 This game tests the player's knowledge of Alfred Hitchcock films (or of their titles, at any rate). It resembles Hangman in the following ways:
 
